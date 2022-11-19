@@ -1,5 +1,6 @@
 class Reservation < ApplicationRecord
   require 'csv'
+  require 'date'
 
   def self.import(file)
     CSV.foreach(file, col_sep: ';', headers: :first_row) do |row|

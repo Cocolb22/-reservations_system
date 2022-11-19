@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'reservations#index'
+  root to: 'reservations#import'
 
 
 end
