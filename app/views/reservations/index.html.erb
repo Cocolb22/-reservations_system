@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV IMPORT AND TABLE SYSTEM</title>
+</head>
+<body>
+  <p><%= link_to "Importer un CSV", import_reservations_path%></p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Numero billet</th>
+      <th>Reservation</th>
+      <th>Date reservation</th>
+      <th>Heure reservation</th>
+      <th>Cle spectacle</th>
+      <th>Spectacle</th>
+      <th>Cle representation</th>
+      <th>Representation</th>
+      <th>Date representation</th>
+      <th>Heure representation</th>
+      <th>Date fin representation</th>
+      <th>Heure fin representation</th>
+      <th>Prix</th>
+      <th>Type de produit</th>
+      <th>Filiere de vente</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Email</th>
+      <th>Adresse</th>
+      <th>Code Postal</th>
+      <th>Pays</th>
+      <th>Age</th>
+      <th>Sexe</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.billet_number %></td>
+        <td><%= reservation.reservation_number %></td>
+        <td><%= reservation.reservation_date %></td>
+        <td><%= reservation.reservation_hour %></td>
+        <td><%= reservation.spectacle_key %></td>
+        <td><%= reservation.spectacle %></td>
+        <td><%= reservation.representation_key %></td>
+        <td><%= reservation.representation %></td>
+        <td><%= reservation.representation_date %></td>
+        <td><%= reservation.representation_hour %></td>
+        <td><%= reservation.representation_end_date %></td>
+        <td><%= reservation.representation_end_hour %></td>
+        <td><%= reservation.price %></td>
+        <td><%= reservation.product_type %></td>
+        <td><%= reservation.sale_company %></td>
+        <td><%= reservation.last_name %></td>
+        <td><%= reservation.first_name %></td>
+        <td><%= reservation.email %></td>
+        <td><%= reservation.adress %></td>
+        <td><%= reservation.zipcode %></td>
+        <td><%= reservation.country %></td>
+        <td><%= reservation.age %></td>
+        <td><%= reservation.gender %></td>
+      </tr>
+    <% end  %>
+  </tbody>
+</table>
+
+</body>
+</html>
