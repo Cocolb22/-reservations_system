@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV IMPORT AND TABLE SYSTEM</title>
+</head>
+<body>
+
+<div>
+<h4>Import CSV file</h4>
+  <%= form_tag bulk_create_reservations_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "import CSV" %>
+  <% end %>
+</div>
+
+<p><%= link_to "Accéder aux tableaux", reservations_path%></p>
+
+
+
+</body>
+</html>
