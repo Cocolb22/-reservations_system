@@ -14,5 +14,5 @@ class ReservationsController < ApplicationController
   end
 
   def import; end
-  
+
 end
