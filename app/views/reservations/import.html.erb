@@ -6,19 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSV IMPORT AND TABLE SYSTEM</title>
 </head>
-<body>
+<body class= "body">
 
-<div>
-<h4>Import CSV file</h4>
-  <%= form_tag bulk_create_reservations_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <%= submit_tag "import CSV" %>
-  <% end %>
-</div>
+  <div class="container">
+    <div class="import">
+      <h1>Import CSV file</h1>
+      <div class="import-file">
+        <%= form_tag bulk_create_reservations_path, multipart: true do %>
+          <span class= "btn-add"> <%= file_field_tag :file %> </span>
+          <%= submit_tag "Importer CSV", class: "btn-submit"  %>
+        <% end %>
+      </div>
+    </div>
 
-<p><%= link_to "Accéder aux tableaux", reservations_path%></p>
-
-
-
+    <p class="link"><%= link_to "Accéder aux tableaux", reservations_path%></p>
+  </div>
 </body>
 </html>
+

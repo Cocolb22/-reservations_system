@@ -4,9 +4,15 @@ class ReservationsController < ApplicationController
   end
 
   def bulk_create
-    Reservation.import(params[:file])
-    redirect_to action: 'index'
+    if params[:file]
+
+      Reservation.import(params[:file])
+      redirect_to action: 'index'
+    else
+      render :import, status: :unprocessable_entity
+    end
   end
 
   def import; end
+  
 end

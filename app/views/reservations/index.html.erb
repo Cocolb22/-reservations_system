@@ -6,69 +6,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSV IMPORT AND TABLE SYSTEM</title>
 </head>
-<body>
-  <p><%= link_to "Importer un CSV", import_reservations_path%></p>
+<body class="index-body">
+
+<%= link_to "Importer un CSV", import_reservations_path, class: "btn-submit"%>
+
+<h1> Tableau récapitulatif</h1>
+
+  <div class="table">
+    <table>
+      <thead>
+        <tr>
+          <th>Numero billet</th>
+          <th>Reservation</th>
+          <th>Date et heure de reservation</th>
+          <th>Cle spectacle</th>
+          <th>Spectacle</th>
+          <th>Cle representation</th>
+          <th>Representation</th>
+          <th>Date et heure de la representation</th>
+          <th>Date et heure de fin de la representation</th>
+          <th>Prix</th>
+          <th>Type de produit</th>
+          <th>Filiere de vente</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Email</th>
+          <th>Adresse</th>
+          <th>Code Postal</th>
+          <th>Pays</th>
+          <th>Age</th>
+          <th>Sexe</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reservations.each do |reservation| %>
+          <tr>
+            <td><%= reservation.billet_number %></td>
+            <td><%= reservation.reservation_number %></td>
+            <td><%= reservation.reservation_date.strftime("%y/%m/%d").to_s %>
+                <%= reservation.reservation_hour.time.strftime("%Hh%M") %></td>
+            <td><%= reservation.spectacle_key %></td>
+            <td><%= reservation.spectacle %></td>
+            <td><%= reservation.representation_key %></td>
+            <td><%= reservation.representation %></td>
+            <td><%= reservation.representation_date.strftime("%y/%m/%d").to_s %>
+                <%= reservation.representation_hour.time.strftime("%Hh%M") %></td>
+            <td><%= reservation.representation_end_date.strftime("%y/%m/%d").to_s %>
+                <%= reservation.representation_end_hour.time.strftime("%Hh%M") %></td>
+            <td><%= reservation.price %></td>
+            <td><%= reservation.product_type %></td>
+            <td><%= reservation.sale_company %></td>
+            <td><%= reservation.last_name %></td>
+            <td><%= reservation.first_name %></td>
+            <td><%= reservation.email %></td>
+            <td><%= reservation.adress %></td>
+            <td><%= reservation.zipcode %></td>
+            <td><%= reservation.country %></td>
+            <td><%= reservation.age %></td>
+            <td><%= reservation.gender %></td>
+          </tr>
+        <% end  %>
+      </tbody>
+    </table>
+  </div>
+
+  <h1>Useful Datas</h1>
+
+  <div class="syntetic-table">
+    <table >
+        <thead>
+          <tr>
+            <th>Nombre total de réservations</th>
+            <th>Nombre d'acheteurs uniques</th>
+            <th>Moyenne d'âge</th>
+            <th>Prix moyen par représentation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td> <%=@reservations.count  %> </td>
+          <td> <%=@reservations.pluck(:email).uniq.reject(&:nil?).count  %></td>
+          <td> <%= reservations = @reservations.uniq(&:email).reject{ |reservation|   reservation.age.nil? }
+                  mean = reservations.sum(&:age) / reservations.count %></td>
+
+          <td><%= @reservations.group(:representation_key).average(:price) %></td>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Numero billet</th>
-      <th>Reservation</th>
-      <th>Date reservation</th>
-      <th>Heure reservation</th>
-      <th>Cle spectacle</th>
-      <th>Spectacle</th>
-      <th>Cle representation</th>
-      <th>Representation</th>
-      <th>Date representation</th>
-      <th>Heure representation</th>
-      <th>Date fin representation</th>
-      <th>Heure fin representation</th>
-      <th>Prix</th>
-      <th>Type de produit</th>
-      <th>Filiere de vente</th>
-      <th>Nom</th>
-      <th>Prenom</th>
-      <th>Email</th>
-      <th>Adresse</th>
-      <th>Code Postal</th>
-      <th>Pays</th>
-      <th>Age</th>
-      <th>Sexe</th>
-    </tr>
-  </thead>
+        </tbody>
+      </table>
+  </div>
 
-  <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.billet_number %></td>
-        <td><%= reservation.reservation_number %></td>
-        <td><%= reservation.reservation_date %></td>
-        <td><%= reservation.reservation_hour %></td>
-        <td><%= reservation.spectacle_key %></td>
-        <td><%= reservation.spectacle %></td>
-        <td><%= reservation.representation_key %></td>
-        <td><%= reservation.representation %></td>
-        <td><%= reservation.representation_date %></td>
-        <td><%= reservation.representation_hour %></td>
-        <td><%= reservation.representation_end_date %></td>
-        <td><%= reservation.representation_end_hour %></td>
-        <td><%= reservation.price %></td>
-        <td><%= reservation.product_type %></td>
-        <td><%= reservation.sale_company %></td>
-        <td><%= reservation.last_name %></td>
-        <td><%= reservation.first_name %></td>
-        <td><%= reservation.email %></td>
-        <td><%= reservation.adress %></td>
-        <td><%= reservation.zipcode %></td>
-        <td><%= reservation.country %></td>
-        <td><%= reservation.age %></td>
-        <td><%= reservation.gender %></td>
-      </tr>
-    <% end  %>
-  </tbody>
-</table>
+
+
+
 
 </body>
 </html>
