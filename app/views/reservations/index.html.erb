@@ -88,7 +88,10 @@
           <td> <%=@reservations.pluck(:email).uniq.reject(&:nil?).count  %></td>
           <td> <%= reservations = @reservations.uniq(&:email).reject{ |reservation|   reservation.age.nil? }
                   mean = reservations.sum(&:age) / reservations.count %></td>
+
           <td><%= @reservations.group(:representation_key).average(:price) %></td>
+
+
         </tbody>
       </table>
   </div>
@@ -99,16 +102,3 @@
 
 </body>
 </html>
-<%# # Nombre de Reservations
-@reservations.count
-
-# Nombre d'acheteurs uniques
-@reservations.pluck(:email).uniq.reject(&:nil?).count
-
-# Moyenne d'age
-reservations = @reservations.uniq(&:email).reject{ |reservation| reservation.age.nil? }
-mean = reservations.sum(&:age) / reservations.count
-
-# Prix par représentation
-@reservations.group(:representation_key).average(:price)
-# => {39203920 => 0.62e2, 29029302 => 0.45e2} %>
