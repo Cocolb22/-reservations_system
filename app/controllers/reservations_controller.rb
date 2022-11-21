@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
       Reservation.import(params[:file])
       redirect_to action: 'index'
     else
+
       render :import, status: :unprocessable_entity
     end
   end

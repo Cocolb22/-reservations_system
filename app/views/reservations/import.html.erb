@@ -19,9 +19,16 @@
       </div>
     </div>
 
-      <p class="link"><%= link_to "Accéder au tableau", reservations_path%></p>
-
 
   </div>
+  <div>
+    <% if Reservation.ids.present? %>
+      <%= link_to "Accéder au tableau", reservations_path%>
+    <% else @reservations.nil? %>
+      <span> Aucun tableau disponible</span>
+    <% end %>
+  </div>
+
+  
 </body>
 </html>
