@@ -8,7 +8,7 @@
 </head>
 <body class="index-body">
 
-<%= link_to "Importer un CSV", import_reservations_path, class: "btn-submit"%>
+<%= link_to "Importer un CSV", import_reservations_path,  class: "btn-submit" %>
 
 <h1> Tableau récapitulatif</h1>
 
@@ -17,14 +17,14 @@
       <thead>
         <tr>
           <th>Numero billet</th>
-          <th>Reservation</th>
-          <th>Date et heure de reservation</th>
-          <th>Cle spectacle</th>
+          <th>Réservation</th>
+          <th>Date et heure de réservation</th>
+          <th>Clé spectacle</th>
           <th>Spectacle</th>
-          <th>Cle representation</th>
-          <th>Representation</th>
-          <th>Date et heure de la representation</th>
-          <th>Date et heure de fin de la representation</th>
+          <th>Clé représentation</th>
+          <th>Représentation</th>
+          <th>Date et heure de la représentation</th>
+          <th>Date et heure de fin de la représentation</th>
           <th>Prix</th>
           <th>Type de produit</th>
           <th>Filiere de vente</th>
@@ -75,7 +75,7 @@
 
   <div class="syntetic-table">
     <table >
-        <thead>
+        <thead class ="syntetic-head">
           <tr>
             <th>Nombre total de réservations</th>
             <th>Nombre d'acheteurs uniques</th>
@@ -83,18 +83,29 @@
             <th>Prix moyen par représentation</th>
           </tr>
         </thead>
-        <tbody>
-          <td> <%=@reservations.count  %> </td>
-          <td> <%=@reservations.pluck(:email).uniq.reject(&:nil?).count  %></td>
-          <td> <%= reservations = @reservations.uniq(&:email).reject{ |reservation|   reservation.age.nil? }
-                  mean = reservations.sum(&:age) / reservations.count %></td>
+        <tbody class="syntetic-body">
+          <tr>
+            <td> <%=@reservations.count  %> </td>
+            <td> <%=@reservations.pluck(:email).uniq.reject(&:nil?).count  %></td>
+            <td> <%= reservations = @reservations.uniq(&:email).reject{ |reservation|   reservation.age.nil? }
+                    mean = reservations.sum(&:age) / reservations.count %></td>
 
-          <td><%= @reservations.group(:representation_key).average(:price) %></td>
+            <td>
+                  <%  price_per_representation = @reservations.group(:representation_key).average(:price) %>
+                  <%  price_per_representation.each do |key, value| %>
+                 <ul>
+                 <li> Clé représentation <%= key %> :  <%= value.to_f.round(2) %></li>
+                 </ul>
 
+                  <% end %>
+            </td>
+          </tr>
 
         </tbody>
       </table>
   </div>
+
+
 
 
 
