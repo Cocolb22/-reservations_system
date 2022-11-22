@@ -5,7 +5,9 @@ Le système est basé sur un Model de réservation de places pour un spectacle, 
 
 Languages utilisés: 
 Ruby
+
 HTML
+
 CSS
 
 Pour copier le repository : 
@@ -15,6 +17,7 @@ git clone git@github.com:Cocolb22/-reservations_system.git, à exécuter dans le
 Commandes à exécuter ensuite :
 
 bundle install
+
 yarn build
 
 Un modèle de fichier CSV est intégré dans le dossier DB, pour que vous puissiez l'utiliser
