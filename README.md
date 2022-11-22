@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Creation d'un système d'import de fichier CSV, en utilisant Rails.
+Le système est basé sur un Model de réservation de places pour un spectacle, et rend dans un tableau toutes les informations transmises par le fichier CSV
 
-Things you may want to cover:
+Languages utilisés: 
+Ruby
+HTML
+CSS
 
-* Ruby version
+Pour copier le repository : 
 
-* System dependencies
+git clone git@github.com:Cocolb22/-reservations_system.git, à exécuter dans le terminal
 
-* Configuration
+Commandes à exécuter ensuite :
 
-* Database creation
+bundle install
+yarn build
 
-* Database initialization
+Un modèle de fichier CSV est intégré dans le dossier DB, pour que vous puissiez l'utiliser
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
