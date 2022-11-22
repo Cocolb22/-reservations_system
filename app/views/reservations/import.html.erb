@@ -20,15 +20,18 @@
     </div>
 
 
-  </div>
-  <div>
-    <% if Reservation.ids.present? %>
+<div>
+    <% if Reservation.any? %>
       <%= link_to "Accéder au tableau", reservations_path%>
     <% else @reservations.nil? %>
-      <span> Aucun tableau disponible</span>
+     <p> Aucun tableau disponible</p>
     <% end %>
+
   </div>
 
-  
+  </div>
+
+
+
 </body>
 </html>
